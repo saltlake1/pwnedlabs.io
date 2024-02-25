@@ -1,0 +1,89 @@
+1)
+aws sts get-caller-identity
+namitadevi@Namitas-MacBook-Air cloud % aws sts get-caller-identity
+{
+    "UserId": "AIDA3SFMDAPOWFB7BSGME",
+    "Account": "794929857501",
+    "Arn": "arn:aws:iam::794929857501:user/dev01"
+}
+2)
+aws iam get-user
+namitadevi@Namitas-MacBook-Air cloud % aws iam get-user
+{
+    "User": {
+        "Path": "/",
+        "UserName": "dev01",
+        "UserId": "AIDA3SFMDAPOWFB7BSGME",
+        "Arn": "arn:aws:iam::794929857501:user/dev01",
+        "CreateDate": "2023-09-28T21:56:31Z",
+        "PasswordLastUsed": "2024-02-25T06:24:56Z",
+        "Tags": [
+            {
+                "Key": "AKIA3SFMDAPOWC2NR5LO",
+                "Value": "dev01"
+            }
+        ]
+    }
+}
+It tells the date when it was created
+access key in tags
+==============
+3)
+aws iam list-groups-for-user --user-name dev01
+
+syn: aws iam list-groups-for-user --user-name <User>
+
+o/p
+
+{
+"Groups": []
+}
+
+It tells which iam group a IAM user is associated with.
+
+why is it called iam group, why not group alone
+IAM (Identity and Access Management) groups in AWS are named as such to emphasize their purpose
+
+Few iam groups are Admins,Developers,Finance
+4)
+aws iam list-attached-user-policies --user-name dev01
+syn: aws iam list-attached-user-policies --user-name [user]
+
+it tells the
+managed policies
+that iam user is associated with
+
+Here there are 2 policies attached, namely
+1.
+AmazonGuardDutyReadOnlyAccess
+2.
+dev01
+namitadevi@Namitas-MacBook-Air cloud % aws iam list-attached-user-policies --user-name dev01
+{
+"AttachedPolicies": [
+{
+"PolicyName": "AmazonGuardDutyReadOnlyAccess",
+"PolicyArn": "arn:aws:iam::aws:policy/AmazonGuardDutyReadOnlyAccess"
+},
+{
+"PolicyName": "dev01",
+"PolicyArn": "arn:aws:iam::794929857501:policy/dev01"
+}
+]
+}
+==========
+5)
+aws iam list-user-policies --user-name dev01
+syn: aws iam list-user-policies --user-name [user]
+
+It lists inline policy,the policy which is embedded directly to the user
+
+o/p
+{
+"PolicyNames": [
+"S3_Access"
+]
+}
+===========
+
+
