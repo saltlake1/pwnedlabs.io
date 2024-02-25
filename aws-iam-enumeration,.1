@@ -1,1 +1,147 @@
-a
+To list versions of a specefic policy, the attached policy found
+1)
+aws iam list-policy-versions --policy-arn arn:aws:iam::aws:policy/AmazonGuardDutyReadOnlyAccess
+{
+    "Versions": [
+        {
+            "VersionId": "v4",
+            "IsDefaultVersion": true,
+            "CreateDate": "2023-11-16T23:07:06Z"
+        },
+        {
+            "VersionId": "v3",
+            "IsDefaultVersion": false,
+            "CreateDate": "2021-02-16T23:37:57Z"
+        },
+        {
+            "VersionId": "v2",
+            "IsDefaultVersion": false,
+            "CreateDate": "2018-04-25T21:07:17Z"
+        },
+        {
+            "VersionId": "v1",
+            "IsDefaultVersion": false,
+            "CreateDate": "2017-11-28T22:29:40Z"
+        }
+    ]
+}
+====================
+To see a specefic version
+2)
+aws iam get-policy-version --policy-arn arn:aws:iam::aws:policy/AmazonGuardDutyReadOnlyAccess --version-id v3
+namitadevi@Namitas-MacBook-Air cloud % aws iam get-policy-version --policy-arn arn:aws:iam::aws:policy/AmazonGuardDutyReadOnlyAccess --version-id v3
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "guardduty:Describe*",
+                        "guardduty:Get*",
+                        "guardduty:List*"
+                    ],
+                    "Resource": "*"
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
+                        "organizations:ListDelegatedAdministrators",
+                        "organizations:ListAWSServiceAccessForOrganization",
+                        "organizations:DescribeOrganizationalUnit",
+                        "organizations:DescribeAccount",
+                        "organizations:DescribeOrganization"
+                    ],
+                    "Resource": "*"
+                }
+            ]
+        },
+        "VersionId": "v3",
+        "IsDefaultVersion": false,
+        "CreateDate": "2021-02-16T23:37:57Z"
+    }
+}
+
+=======
+To list versions of another policy, see previous file to know which policies have been found.
+3)
+aws iam list-policy-versions --policy-arn arn:aws:iam::794929857501:policy/dev01
+
+namitadevi@Namitas-MacBook-Air cloud % aws iam list-policy-versions --policy-arn arn:aws:iam::794929857501:policy/dev01
+{
+    "Versions": [
+        {
+            "VersionId": "v7",
+            "IsDefaultVersion": true,
+            "CreateDate": "2023-10-11T19:59:08Z"
+        },
+        {
+            "VersionId": "v6",
+            "IsDefaultVersion": false,
+            "CreateDate": "2023-10-11T19:47:41Z"
+        },
+        {
+            "VersionId": "v5",
+            "IsDefaultVersion": false,
+            "CreateDate": "2023-10-07T22:48:28Z"
+        },
+        {
+            "VersionId": "v4",
+            "IsDefaultVersion": false,
+            "CreateDate": "2023-10-02T20:38:35Z"
+        },
+        {
+            "VersionId": "v3",
+            "IsDefaultVersion": false,
+            "CreateDate": "2023-10-02T20:29:52Z"
+        }
+    ]
+}
+
+================
+4)
+aws iam get-policy-version --policy-arn arn:aws:iam::794929857501:policy/dev01 --version-id v7
+
+{
+    "PolicyVersion": {
+        "Document": {
+            "Version": "2012-10-17",
+            "Statement": [
+                {
+                    "Sid": "VisualEditor0",
+                    "Effect": "Allow",
+                    "Action": [
+                        "iam:GetRole",
+                        "iam:GetPolicyVersion",
+                        "iam:GetPolicy",
+                        "iam:ListPolicyVersions",
+                        "iam:GetUserPolicy",
+                        "iam:ListGroupsForUser",
+                        "iam:ListAttachedUserPolicies",
+                        "iam:ListUserPolicies",
+                        "iam:GetUser",
+                        "iam:ListAttachedRolePolicies",
+                        "iam:GetRolePolicy"
+                    ],
+                    "Resource": [
+                        "arn:aws:iam::794929857501:user/dev01",
+                        "arn:aws:iam::794929857501:role/BackendDev",
+                        "arn:aws:iam::794929857501:policy/BackendDevPolicy",
+                        "arn:aws:iam::794929857501:policy/dev01",
+                        "arn:aws:iam::aws:policy/AmazonGuardDutyReadOnlyAccess"
+                    ]
+                }
+            ]
+        },
+        "VersionId": "v7",
+        "IsDefaultVersion": true,
+        "CreateDate": "2023-10-11T19:59:08Z"
+    }
+}
+===============
+
+
+
+
+
